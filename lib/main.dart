@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Browse Pests & Diseases'),
+      home: const MyHomePage(title: 'Extension Services'),
     );
   }
 }
@@ -63,153 +63,85 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Card(
-//               child: Column(
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: <Widget>[
-//                   const ListTile(
-//                     title: Text('Diseases'),
-//                   ),
-//                   Text('New cases: 24'),
-//                 ],
-//               ),
-//             ),
-//             Card(
-//               child: Column(
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: const <Widget>[
-//                   ListTile(
-//                     title: Text('Pests'),
-//                   ),
-//                   Text('New cases: 30'),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//      floatingActionButton: SizedBox(
-//   width: 200,
-//   height: 50,
-//   child: FloatingActionButton(
-//     onPressed: () {
-//       // Add your onPressed logic here
-//     },
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: <Widget>[
-//         Icon(Icons.add),
-//         Text("Report Disease"),
-//       ],
-//     ),
-//     backgroundColor: Colors.green,
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.circular(25), // Use a high value of BorderRadius to create a pill shape
-//       // side: BorderSide(color: Colors.red),
-//     ),
-//   ),
-   child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.3, // Set the height to 30% of the screen height
-                  width: double.infinity, // Set the width to occupy the entire screen width
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "LiveStock Diseases",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        "New cases: 24",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20), // Add some vertical spacing between the cards
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.3, // Set the height to 30% of the screen height
-                  width: double.infinity, // Set the width to occupy the entire screen width
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Crop Diseases",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        "New cases: 30",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+        child: GridView.count(
+          crossAxisCount: 2,
+          padding: EdgeInsets.all(16.0),
+          mainAxisSpacing: 16.0,
+          crossAxisSpacing: 16.0,
+          children: <Widget>[
+            ServiceCard(
+              label: 'Banking',
+              icon: Icons.account_balance,
             ),
-          ),
+            ServiceCard(
+              label: 'Land Brokers',
+              icon: Icons.home,
+            ),
+            ServiceCard(
+              label: 'Transportation',
+              icon: Icons.directions_car,
+            ),
+            ServiceCard(
+              label: 'Veterinary',
+              icon: Icons.pets,
+            ),
+            ServiceCard(
+              label: 'Tractor Servicing',
+              icon: Icons.build,
+            ),
+            ServiceCard(
+              label: 'Legal Services',
+              icon: Icons.gavel,
+            ),
+          ],
         ),
-        floatingActionButton: SizedBox(
-          width: 200,
-          height: 50,
-          child: FloatingActionButton(
-            onPressed: () {
-              // Add your onPressed logic here
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.add),
-                SizedBox(width: 5), // Add some spacing between the icon and text
-                Text("Report Disease"),
-              ],
-            ),
-            backgroundColor: Colors.green,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25), // Use a high value of BorderRadius to create a pill shape
-              // side: BorderSide(color: Colors.red),
-            ),
-          ),
+      ),
+    );
+  }
+}
+
+class ServiceCard extends StatelessWidget {
+  final String label;
+  final IconData icon;
+
+  const ServiceCard({Key? key, required this.label, required this.icon})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Add your onTap logic here
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
         ),
-    
+        elevation: 2.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              icon,
+              size: 48.0,
+              color: Colors.green,
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
